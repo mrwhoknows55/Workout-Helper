@@ -6,8 +6,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.os.WorkSource;
 import android.util.Log;
+import android.view.View;
 import android.widget.TextView;
 
 import com.mrwhoknows.workout.adapter.WorkoutAdapter;
@@ -47,7 +49,7 @@ public class CheckoutActivity extends AppCompatActivity implements WorkoutAdapte
                 totalTime += workout.getWorkoutTimeInSec();
             }
 
-            totalTimeText.setText("Total Time: " + String.valueOf(totalTime/60 * sets)+" Mins");
+            totalTimeText.setText("Total Time: " + String.valueOf(totalTime / 60 * sets) + " Mins");
         } else {
             Log.d(TAG, "getIntent: error");
         }
@@ -69,4 +71,13 @@ public class CheckoutActivity extends AppCompatActivity implements WorkoutAdapte
         Log.d(TAG, "onWorkoutClick: clicked");
 
     }
+
+    public void startExercise(View view){
+        Intent intent;
+        intent = new Intent(this, CountdownTimerActivity.class);
+        intent.putParcelableArrayListExtra("object", workouts);
+        intent.putExtra("sets", sets);
+        startActivity(intent);
+    }
+
 }
