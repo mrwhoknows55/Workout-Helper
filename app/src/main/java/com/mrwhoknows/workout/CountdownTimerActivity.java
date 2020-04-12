@@ -108,7 +108,6 @@ public class CountdownTimerActivity extends AppCompatActivity {
             e.printStackTrace();
         }
         mediaPlayer = MediaPlayer.create(this, R.raw.audio1);
-        mediaPlayer.setLooping(true);
         mediaPlayer.start();
         mediaPlayer.setScreenOnWhilePlaying(true);
 
