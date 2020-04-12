@@ -121,36 +121,20 @@ public class MainActivity extends AppCompatActivity {
     private void setWorkoutList() {
         workouts = new ArrayList<>();
 
-        workouts.add(new Workout("Pushups", 240, R.drawable.img01));
-        workouts.add(new Workout("Situps", 180, R.drawable.img02));
-        workouts.add(new Workout("THREE", 180, R.drawable.img03));
+        workouts.add(new Workout("Push Ups", 240, R.drawable.img01));
+        workouts.add(new Workout("Sit ups", 180, R.drawable.img02));
+        workouts.add(new Workout("Crunches", 180, R.drawable.img03));
         workouts.add(new Workout("Side Bends", 240, R.drawable.img04));
         workouts.add(new Workout("Leg Lifts", 60, R.drawable.img05));
-        workouts.add(new Workout("Weighted Pushups", 120, R.drawable.img06));
+        workouts.add(new Workout("Weighted Push Ups", 120, R.drawable.img06));
         workouts.add(new Workout("Bicep Dumbbell Curl", 120, R.drawable.img07));
-        workouts.add(new Workout("EIGHT", 180, R.drawable.img08));
-        workouts.add(new Workout("NINE", 180, R.drawable.img09));
+        workouts.add(new Workout("Exercise Ball Push Ups", 180, R.drawable.img08));
+        workouts.add(new Workout("Tree Pose", 180, R.drawable.img09));
         workouts.add(new Workout("Sited Rows", 120, R.drawable.img10));
         workouts.add(new Workout("Incline Bench Press", 180, R.drawable.img11));
         workouts.add(new Workout("Bench Press", 120, R.drawable.img12));
-        workouts.add(new Workout("THIRTEEN", 180, R.drawable.img13));
+        workouts.add(new Workout("Machine Shoulder Press", 180, R.drawable.img13));
         workouts.add(new Workout("Incline Crunches", 180, R.drawable.img14));
-
-
-//        workouts.add(new Workout("Pushups", 10, R.drawable.img01));
-//        workouts.add(new Workout("Situps", 18, R.drawable.img02));
-//        workouts.add(new Workout("THREE", 18, R.drawable.img03));
-//        workouts.add(new Workout("Side Bends", 10, R.drawable.img04));
-//        workouts.add(new Workout("Leg Lifts", 6, R.drawable.img05));
-//        workouts.add(new Workout("Weighted Push Ups", 12, R.drawable.img06));
-//        workouts.add(new Workout("Bicep Dumbbell Curl", 12, R.drawable.img07));
-//        workouts.add(new Workout("EIGHT", 18, R.drawable.img08));
-//        workouts.add(new Workout("NINE", 18, R.drawable.img09));
-//        workouts.add(new Workout("Sited Rows", 12, R.drawable.img10));
-//        workouts.add(new Workout("Incline Bench Press", 18, R.drawable.img11));
-//        workouts.add(new Workout("Bench Press", 12, R.drawable.img12));
-//        workouts.add(new Workout("THIRTEEN", 18, R.drawable.img13));
-//        workouts.add(new Workout("Incline Crunches", 18, R.drawable.img14));
 
         Collections.shuffle(workouts);
     }
