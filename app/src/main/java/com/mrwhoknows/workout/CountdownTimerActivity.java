@@ -3,12 +3,15 @@ package com.mrwhoknows.workout;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.os.PowerManager;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -40,6 +43,7 @@ public class CountdownTimerActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_countdown_timer);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
         setsRemainingText = findViewById(R.id.setsRemaining);
         countdownTimerText = findViewById(R.id.countdownTimerText);
@@ -56,7 +60,7 @@ public class CountdownTimerActivity extends AppCompatActivity {
             this.workoutArrayList = getIntent().getParcelableArrayListExtra("object");
             this.sets = getIntent().getIntExtra("sets", 2) - 1;
 
-            setsRemainingText.setText(String.valueOf(sets) + " Sets Remaining");
+            setsRemainingText.setText("Sets Remaining: " + String.valueOf(sets));
 
             pos = 0;
             changeExercises();
@@ -95,6 +99,7 @@ public class CountdownTimerActivity extends AppCompatActivity {
 
     private void startTimer() {
         pauseBtn.setVisibility(View.VISIBLE);
+        restText.setText("Keep Going");
         timeLeftInMillis = workoutArrayList.get(pos).getWorkoutTimeInSec() * 1000;
 
         try {
@@ -103,6 +108,7 @@ public class CountdownTimerActivity extends AppCompatActivity {
             e.printStackTrace();
         }
         mediaPlayer = MediaPlayer.create(this, R.raw.audio1);
+        mediaPlayer.setLooping(true);
         mediaPlayer.start();
         mediaPlayer.setScreenOnWhilePlaying(true);
 
@@ -120,7 +126,7 @@ public class CountdownTimerActivity extends AppCompatActivity {
 
                     if (sets > 0) {
                         sets--;
-                        setsRemainingText.setText(String.valueOf(sets) + " Sets Remaining");
+                        setsRemainingText.setText("Sets Remaining: " + String.valueOf(sets));
                         isTimerRunning = true;
                         pos = 0;
                         try {
@@ -138,6 +144,7 @@ public class CountdownTimerActivity extends AppCompatActivity {
                         restText.setVisibility(View.INVISIBLE);
                         setsRemainingText.setVisibility(View.INVISIBLE);
                         currentImg.setVisibility(View.GONE);
+                        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
                     }
                 } else {
                     isTimerRunning = true;
@@ -163,7 +170,7 @@ public class CountdownTimerActivity extends AppCompatActivity {
     }
 
     private void breakTimer() {
-        long breakTime = 5000; //40000
+        long breakTime = 40000; //40000
         isBreak = true;
 
         mediaPlayer.stop();
@@ -210,4 +217,10 @@ public class CountdownTimerActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    protected void onStop() {
+        super.onStop();
+        mediaPlayer.stop();
+        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+    }
 }

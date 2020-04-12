@@ -14,7 +14,8 @@
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         app:cardCornerRadius="16dp"
-        app:cardElevation="16dp"
+        app:cardElevation="24dp"
+        app:cardMaxElevation="24dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -40,6 +41,7 @@
                 style="@style/TextAppearance.MaterialComponents.Headline4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
                 android:gravity="center"
                 android:text="Keep Going"
                 android:textAlignment="center"
@@ -75,7 +77,8 @@
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="8dp"
         app:cardCornerRadius="16dp"
-        app:cardElevation="16dp"
+        app:cardElevation="8dp"
+        app:cardMaxElevation="8dp"
         app:layout_constraintBottom_toTopOf="@+id/materialCardView3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -94,7 +97,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
                 android:text="Current : Pushups"
-                android:textSize="18sp" />
+                android:textSize="22sp" />
 
             <ImageView
                 android:id="@+id/currentExImg"
@@ -117,7 +120,8 @@
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="8dp"
         app:cardCornerRadius="16dp"
-        app:cardElevation="16dp"
+        app:cardElevation="8dp"
+        app:cardMaxElevation="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -137,7 +141,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
                 android:text=" Next: Situps"
-                android:textSize="18sp" />
+                android:textSize="22sp" />
 
             <ImageView
                 android:id="@+id/nextExImg"

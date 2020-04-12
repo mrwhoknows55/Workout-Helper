@@ -39,7 +39,7 @@ public class WorkoutAdapter extends RecyclerView.Adapter<WorkoutAdapter.WorkoutH
     @Override
     public void onBindViewHolder(@NonNull WorkoutHolder holder, int position) {
 
-        holder.time.setText(String.valueOf(workouts.get(position).getWorkoutTimeInSec() / 60) + ":" + String.valueOf(workouts.get(position).getWorkoutTimeInSec() % 60) + " Mins");
+        holder.time.setText(String.valueOf(workouts.get(position).getWorkoutTimeInSec() / 60) + " Mins");
         holder.set.setText(String.valueOf(sets) + " Sets");
         holder.image.setImageResource(workouts.get(position).getWorkoutImage());
         holder.name.setText(workouts.get(position).getWorkoutName());
