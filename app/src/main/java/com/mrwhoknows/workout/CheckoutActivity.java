@@ -4,7 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.WorkSource;
@@ -29,10 +31,12 @@ public class CheckoutActivity extends AppCompatActivity implements WorkoutAdapte
 
     private TextView totalTimeText;
 
+    @SuppressLint("SourceLockedOrientationActivity")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_checkout);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         totalTimeText = findViewById(R.id.totalTimeText);
 
@@ -72,7 +76,7 @@ public class CheckoutActivity extends AppCompatActivity implements WorkoutAdapte
 
     }
 
-    public void startExercise(View view){
+    public void startExercise(View view) {
         Intent intent;
         intent = new Intent(this, CountdownTimerActivity.class);
         intent.putParcelableArrayListExtra("object", workouts);
@@ -80,4 +84,9 @@ public class CheckoutActivity extends AppCompatActivity implements WorkoutAdapte
         startActivity(intent);
     }
 
+    @Override
+    protected void onStop() {
+        super.onStop();
+        finish();
+    }
 }

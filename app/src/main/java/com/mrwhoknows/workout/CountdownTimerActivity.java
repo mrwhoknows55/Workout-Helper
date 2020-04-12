@@ -2,12 +2,15 @@ package com.mrwhoknows.workout;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.SharedPreferences;
+import android.content.pm.ActivityInfo;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.mrwhoknows.workout.model.Workout;
@@ -18,7 +21,8 @@ import java.util.Locale;
 public class CountdownTimerActivity extends AppCompatActivity {
 
     private CountDownTimer countDownTimer;
-    private TextView setsRemainingText, countdownTimerText, currentExText, nextExText;
+    private TextView setsRemainingText, countdownTimerText, currentExText, nextExText, restText;
+    private ImageView currentImg, nextImg;
 
     private int sets;
     private boolean isTimerRunning, isBreak;
@@ -30,17 +34,23 @@ public class CountdownTimerActivity extends AppCompatActivity {
 
     MediaPlayer mediaPlayer;
 
+    @SuppressLint("SourceLockedOrientationActivity")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_countdown_timer);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         setsRemainingText = findViewById(R.id.setsRemaining);
         countdownTimerText = findViewById(R.id.countdownTimerText);
         currentExText = findViewById(R.id.currentExName);
         nextExText = findViewById(R.id.nextExName);
+        restText = findViewById(R.id.restText);
 
         pauseBtn = findViewById(R.id.pauseBtn);
+
+        currentImg = findViewById(R.id.currentExImg);
+        nextImg = findViewById(R.id.nextExImg);
 
         if (getIntent().hasExtra("object") && getIntent().hasExtra("sets")) {
             this.workoutArrayList = getIntent().getParcelableArrayListExtra("object");
@@ -49,27 +59,23 @@ public class CountdownTimerActivity extends AppCompatActivity {
             setsRemainingText.setText(String.valueOf(sets) + " Sets Remaining");
 
             pos = 0;
-            currentExText.setText(workoutArrayList.get(pos).getWorkoutName());
-            if (pos + 1 < workoutArrayList.size())
-                nextExText.setText(workoutArrayList.get(pos + 1).getWorkoutName());
-            else {
-                if (sets >= 0)
-                    nextExText.setText(workoutArrayList.get(0).getWorkoutName());
-                else
-                    nextExText.setText("No Exercises Left");
-            }
+            changeExercises();
             startTimer();
         }
 
         pauseBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (isTimerRunning) {
-                    pauseTimer();
-                    pauseBtn.setText("Restart");
+                if (pauseBtn.getText().toString().equals("Done")) {
+                    finish();
                 } else {
-                    startTimer();
-                    pauseBtn.setText("Pause");
+                    if (isTimerRunning) {
+                        pauseTimer();
+                        pauseBtn.setText("Restart");
+                    } else {
+                        startTimer();
+                        pauseBtn.setText("Pause");
+                    }
                 }
             }
         });
@@ -84,6 +90,7 @@ public class CountdownTimerActivity extends AppCompatActivity {
         if (mediaPlayer.isPlaying()) {
             mediaPlayer.pause();
         }
+
     }
 
     private void startTimer() {
@@ -126,7 +133,11 @@ public class CountdownTimerActivity extends AppCompatActivity {
                         isTimerRunning = false;
                         countdownTimerText.setText("Finished!");
                         mediaPlayer.stop();
-                        pauseBtn.setVisibility(View.INVISIBLE);
+                        pauseBtn.setVisibility(View.VISIBLE);
+                        pauseBtn.setText("Done");
+                        restText.setVisibility(View.INVISIBLE);
+                        setsRemainingText.setVisibility(View.INVISIBLE);
+                        currentImg.setVisibility(View.GONE);
                     }
                 } else {
                     isTimerRunning = true;
@@ -157,16 +168,9 @@ public class CountdownTimerActivity extends AppCompatActivity {
 
         mediaPlayer.stop();
         pauseBtn.setVisibility(View.INVISIBLE);
+        restText.setText("Take Rest");
 
-        currentExText.setText(workoutArrayList.get(pos).getWorkoutName());
-        if (pos + 1 < workoutArrayList.size())
-            nextExText.setText(workoutArrayList.get(pos + 1).getWorkoutName());
-        else {
-            if (sets > 0)
-                nextExText.setText(workoutArrayList.get(0).getWorkoutName());
-            else
-                nextExText.setText("No Exercises Left");
-        }
+        changeExercises();
 
         try {
             Thread.sleep(1000);
@@ -187,6 +191,23 @@ public class CountdownTimerActivity extends AppCompatActivity {
                 startTimer();
             }
         }.start();
+    }
+
+    private void changeExercises() {
+        currentExText.setText("Current: " + workoutArrayList.get(pos).getWorkoutName());
+        currentImg.setImageResource(workoutArrayList.get(pos).getWorkoutImage());
+        if (pos + 1 < workoutArrayList.size()) {
+            nextExText.setText("Next: " + workoutArrayList.get(pos + 1).getWorkoutName());
+            nextImg.setImageResource(workoutArrayList.get(pos + 1).getWorkoutImage());
+        } else {
+            if (sets > 0) {
+                nextExText.setText("Next: " + workoutArrayList.get(0).getWorkoutName());
+                nextImg.setImageResource(workoutArrayList.get(0).getWorkoutImage());
+            } else {
+                nextExText.setText("No Exercises Left");
+                nextImg.setVisibility(View.GONE);
+            }
+        }
     }
 
 }

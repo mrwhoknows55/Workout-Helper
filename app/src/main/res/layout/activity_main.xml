@@ -22,12 +22,22 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
+            <ImageView
+                android:backgroundTintMode="multiply"
+                android:layout_margin="8dp"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_gravity="center"
+                android:scaleX="1.8"
+                android:scaleY="1.8"
+                android:src="@drawable/logo" />
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/exerciseCount"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="16dp"
+                android:layout_marginHorizontal="16dp"
                 android:hint="Count"
                 app:endIconMode="clear_text"
                 app:helperText="Exercises per set(1-14)">
