@@ -11,7 +11,7 @@ Click [here](https://www.youtube.com/watch?v=VFrKjhcTAzE) to know more about the
 </p>
 
 ### Screenshots:
-![preview1](https://github.com/mrwhoknows55/Workout_App/blob/master/screenshots/1.jpg) <br/>
-![preview2](https://github.com/mrwhoknows55/Workout_App/blob/master/screenshots/2.jpg) <br/>
-![preview3](https://github.com/mrwhoknows55/Workout_App/blob/master/screenshots/3.jpg) <br/>
-![preview4](https://github.com/mrwhoknows55/Workout_App/blob/master/screenshots/4.jpg) <br/>
+<img src="https://github.com/mrwhoknows55/Workout_App/blob/master/screenshots/1.jpg" width="360" height="665"> <!-- Force inline -->
+<img src="https://github.com/mrwhoknows55/Workout_App/blob/master/screenshots/2.jpg" width="360" height="665"> <!-- Force inline -->
+<img src="https://github.com/mrwhoknows55/Workout_App/blob/master/screenshots/3.jpg" width="360" height="665"> <!-- Force inline -->
+<img src="https://github.com/mrwhoknows55/Workout_App/blob/master/screenshots/4.jpg" width="360" height="665"> <!-- Force inline -->
