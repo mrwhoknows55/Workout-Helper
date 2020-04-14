@@ -7,7 +7,7 @@ Thanks, Hitesh sir for creating such a great challenge.
 Click [here](https://www.youtube.com/watch?v=VFrKjhcTAzE) to know more about the challenge.  
 ### Download Latest Apk:
 <p align="center">
-  <a href="https://github.com/mrwhoknows55/Workout_App/raw/master/app/release/app-release.apk"><img src="https://img.shields.io/badge/-Download-orange?style=for-the-badge&logo="></a>
+  <a href="https://github.com/mrwhoknows55/Workout_App/raw/master/app/release/app-release.apk"><img src="https://raw.githubusercontent.com/mrwhoknows55/Covid19_Tracker/master/screenshots/download.png"></a>
 </p>
 
 ### Screenshots:
