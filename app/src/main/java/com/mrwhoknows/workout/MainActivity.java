@@ -1,18 +1,14 @@
 package com.mrwhoknows.workout;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.AutoCompleteTextView;
-import android.widget.Toast;
-
-import com.google.android.material.textfield.TextInputEditText;
+import android.widget.ImageView;
+import androidx.appcompat.app.AppCompatActivity;
+import com.bumptech.glide.Glide;
 import com.google.android.material.textfield.TextInputLayout;
 import com.mrwhoknows.workout.model.Workout;
 
@@ -25,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
     private TextInputLayout exCountText, setCountText;
 
-    private String exCount, setCount;
+    private String setCount;
 
     private ArrayList<Workout> workouts;
 
@@ -44,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
     public void selectiveExMode(View view) {
         Log.d(TAG, "selectiveExMode: selected");
 
-        exCount = exCountText.getEditText().getText().toString();
+        String exCount = exCountText.getEditText().getText().toString();
         setCount = setCountText.getEditText().getText().toString();
 
         if (exCount.equals("") && setCount.equals("")) {
@@ -146,5 +142,8 @@ public class MainActivity extends AppCompatActivity {
         exCountText.getEditText().setText("");
         setCountText.getEditText().clearFocus();
         setCountText.getEditText().setText("");
+        Glide.with(this.getBaseContext())
+                .load(R.drawable.logo)
+                .into((ImageView)findViewById(R.id.logo));
     }
 }

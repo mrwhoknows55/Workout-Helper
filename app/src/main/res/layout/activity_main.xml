@@ -23,14 +23,13 @@
             android:orientation="vertical">
 
             <ImageView
-                android:backgroundTintMode="multiply"
+                android:id="@+id/logo"
                 android:layout_margin="8dp"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
                 android:layout_gravity="center"
                 android:scaleX="1.8"
-                android:scaleY="1.8"
-                android:src="@drawable/logo" />
+                android:scaleY="1.8" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/exerciseCount"
